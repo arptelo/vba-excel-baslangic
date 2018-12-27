@@ -1,6 +1,6 @@
 ## Excel için VBA
 
-Excel birçokları için çalışma hayatının önemli bir parçasıdır. Günlük işlerin büyük çoğunluğu Excel yardımı ile takip ediliyor, arşivleniyor, analiz ediliyor ya da raporlanıyor olabilir. Bu kadar sık kullanılsa da kullanıcının bilgi seviyesine göre aynı çalışma birkaç saniye, birkaç saat ya da birkaç hafta alabilir. 
+Excel çalışma hayatının önemli bir aracıdır. Günlük işlerin büyük çoğunluğu Excel yardımı ile takip ediliyor, arşivleniyor, analiz ediliyor ya da raporlanıyor olabilir. Excel bu kadar sık kullanılsa da, kullanıcının bilgi seviyesine göre aynı çalışma birkaç saniye, birkaç saat ya da birkaç hafta alabilir. 
 
 Bu kursun amacı her seviyede ama özellikle başlangıç seviyesindeki kullanıcının Excel bilgisini artırarak, Excel ile takip ettiği iş süreçlerinde daha verimli olmasını sağlamaktır.
 
@@ -40,4 +40,10 @@ End Sub
 
 Bu kodu çalıştırmak için fare işaretçisi bu üç satırdan birinin üzerindeyken F5 tuşuna basılır veya Run menüsünden Run Sub/UserForm seçeneği seçilir veya standart araç çubuğundan yeşil üçgene tıklanır. 
 
-Kod çalıştırıldığında Excel dosyasına geçiş yapılacak ve bir mesaj kutusu açılacaktır. Mesaj kutusunda OK seçeneği seçildiğinde yeniden editöre dönüş yapılır.
+Kod çalıştırıldığında Excel dosyasına geçilecek ve bir mesaj kutusu açılacaktır. Mesaj kutusunda OK seçeneği seçildiğinde yeniden editöre dönülür.
+
+### Makro İçeren Excel Dosyaları
+
+Makro içeren bir Excel dosyası normal olarak kaydedilirse kod içeren modül atılır ve tekrar kullanılamaz. Makro içeren bir Excel dosyasının (ve diğer ofis uygulamalarına ait dosyaların) makroyu kaybetmeden kaydedilmesi için Save As seçeneği seçilerek 'xlsm' uzantısı ile dosyanın kaydedilmesi gerekir. xlsm uzantısı makro içeren bir Excel dosyasının uzantısıdır. Bu dosyalar eğer farklı bir kaynaktan geliyorsa dikkatli olunması gerekir. Makro içeren bir dosya bilgi güvenliği risklerini de beraber getirir.
+
+Microsoft bu nedenle varsayılan ayarlarda makro çalıştırılmasını engeller. Bu ayarlar Developer sekmesinde Macro Security tuşuna basılarak değiştirilebilir. Varsayılan olarak seçilen seçenek uyarı vermek kaydıyla tüm makroların engellendiği ikinci seçenektir. Bu seçenek önerilen seçenektir. Ancak bir makro geliştiricisi geçici olarak tüm makroların etkinleştirildiği dördüncü seçeneği de seçebilir. Tabi bu durumda tüm riskler kullanıcıya ait olacaktır.
