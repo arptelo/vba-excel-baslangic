@@ -47,3 +47,39 @@ Kod çalıştırıldığında Excel dosyasına geçilecek ve bir mesaj kutusu a�
 Makro içeren bir Excel dosyası normal olarak kaydedilirse kod içeren modül atılır ve tekrar kullanılamaz. Makro içeren bir Excel dosyasının (ve diğer ofis uygulamalarına ait dosyaların) makroyu kaybetmeden kaydedilmesi için Save As seçeneği seçilerek 'xlsm' uzantısı ile dosyanın kaydedilmesi gerekir. xlsm uzantısı makro içeren bir Excel dosyasının uzantısıdır. Bu dosyalar eğer farklı bir kaynaktan geliyorsa dikkatli olunması gerekir. Makro içeren bir dosya bilgi güvenliği risklerini de beraber getirir.
 
 Microsoft bu nedenle varsayılan ayarlarda makro çalıştırılmasını engeller. Bu ayarlar Developer sekmesinde Macro Security tuşuna basılarak değiştirilebilir. Varsayılan olarak seçilen seçenek uyarı vermek kaydıyla tüm makroların engellendiği ikinci seçenektir. Bu seçenek önerilen seçenektir. Ancak bir makro geliştiricisi geçici olarak tüm makroların etkinleştirildiği dördüncü seçeneği de seçebilir. Tabi bu durumda tüm riskler kullanıcıya ait olacaktır.
+
+### Veri Türleri
+
+Aşağıdaki kodu dikkate alalım.
+
+```VBA
+Sub showSum()
+  Dim a as Integer
+  Dim b as Integer
+  a = 1
+  b = 2
+  MsgBox a + b
+End Sub
+```
+
+Kod çalıştırıldığında sonucu (3) görüntüleyen bir mesaj kutusu görülür. Bu kodda sırasıyla şunlar gerçekleşir:
+
+1. a ve b ilk iki satırda tamsayı olarak tanımlanır. a ve b'ye değişken ismi verilir. dim değişken tanımlanırken kullanılan bir anahtar kelimedir. as değişkenin türü belirtilmeden önce kullanılan anahtar kelimedir. Integer değişkenlerin türünü (tamsayı) gösterir. 
+
+2. Üçüncü ve dördüncü satırda değişkenlere sırasıyla 1 ve 2 değerleri atanır. = atama operatörü olarak isimlendirilir.
+
+3. MsgBox ile mesaj kutusu çağırılır. Mesaj kutusunda a ve b değişkenlerinin toplamı gösterilir.
+
+Şimdi toplamı göstermek için açıklayıcı bir ifade de ekleyelim.
+
+```VBA
+Sub showSum()
+  Dim a as Integer
+  Dim b as Integer
+  a = 1
+  b = 2
+  MsgBox a & " ve " & b & "'nin toplamı " & a + b & "'tür."
+End Sub
+```
+
+Bu kez "1 ve 2'nin toplamı 3'tür." cümlesini görürüz.
