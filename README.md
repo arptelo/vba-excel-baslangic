@@ -70,16 +70,46 @@ Kod çalıştırıldığında sonucu (3) görüntüleyen bir mesaj kutusu görü
 
 3. MsgBox ile mesaj kutusu çağırılır. Mesaj kutusunda a ve b değişkenlerinin toplamı gösterilir.
 
-Şimdi toplamı göstermek için açıklayıcı bir ifade de ekleyelim.
+Şimdi toplamı göstermek için açıklayıcı bir ifade de eklensin.
 
 ```VBA
-Sub showSum()
-  Dim a as Integer
-  Dim b as Integer
-  a = 1
-  b = 2
   MsgBox a & " ve " & b & "'nin toplamı " & a + b & "'tür."
-End Sub
 ```
 
-Bu kez "1 ve 2'nin toplamı 3'tür." cümlesini görürüz.
+Bu kez "1 ve 2'nin toplamı 3'tür." cümlesi görülür. Cümleyi bu kez bir değişkene atayarak bu değişken MsgBox'a aktarılsın.
+
+```VBA
+  Dim message As String
+  message = a & " ve " & b & "'nin toplamı " & a + b & "'tür."
+  MsgBox message
+```
+
+Yine aynı sonuç elde edilir. Burada yeni bir değişken türü kullanılmıştır. String değişkeni, değişkenin metin ifadeler aldığı durumlarda kullanılır. Metin ifadelerini birleştirmek için & birleştirme operatörü kullanılır. message ifadesine atanan metinde birleştirme operatörü kullanılmıştır. Birleştirme operatörü örnekte de göründüğü gibi metin ifadeleri dışında sayıları da birleştirmede kullanılabilir. Ancak elde edilen ifade bir her zaman metin olacaktır.
+
+Şimdi sıklıkla bahsi geçen değişken ve operatörlere daha yakından bakılsın.
+
+Operatörler matematikte sıklıkla karşılaşılan ifadelerdir. + bir operatördür. Verilen iki sayının toplamını ifade eder. Operatörler verilen sınırlı sayıda girdiden çıktı üreten özel ifadelerdir. Yukarıdaki örnekte 1 ve 2 verildiğinde + operatörü 3 değerini üretir. VBA'da kullanılan diğer operatörler şöyledir.
+
+Operatör Türü | Operatör | Açıklama
+------------- | -------- | --------
+Aritmetik operatörler | * | Verilen iki sayının çarpar
+&#xfeff; | ^ | Birinci sayının ikinci sayı üssünü hesaplar
+&#xfeff; | / | Birinci sayıyı ikinci sayıya böler (sonuç ondalıklı sayı)
+&#xfeff; | \ | Birinci sayıyı ikinci sayıya böler (sonuç tamsayı)
+&#xfeff; | Mod | Birinci sayının ikinci sayıya bölümünde kalanı verir
+&#xfeff; | + | Verilen iki sayının toplar
+&#xfeff; | - | Birinci sayıdan ikinci sayıyı çıkarır
+Karşılaştırma operatörleri | = | Verilen iki sayının eşit olması durumunda True, aksi taktirde False değerini verir
+&#xfeff; | Is | İki nesne aynı ise True aksi taktirde False değerini verir
+&#xfeff; | Like | İki metin ifadesini karşılaştırarak yeterli eşleşme sağlandığında True diğer durumlarda False değerini verir
+Birleştirme operatörleri | & | Verilen iki ifadeyi birleştirir
+&#xfeff; | + | Verilen iki ifadeyi birleştirir
+Mantıksal operatörler | And | Her iki ifade True ise True, diğer durumlarda False verir
+&#xfeff; | Eqv | Her iki ifade True ya da her iki ifade False ise True diğer durumlarda False değerini verir
+&#xfeff; | Imp | İlk ifade True ikinci ifade False ise False, diğer durumlarda True değerini verir
+&#xfeff; | Not | İfade True ise False, False ise True değerini verir
+&#xfeff; | Or | Her iki ifade False ise False diğer durumlarda True değerini verir
+&#xfeff; | Xor | Her iki ifade True ya da her iki ifade False ise False diğer durumlarda True değerini verir
+
+Mantıksal operatörlerde operandların (parametrelerin, ifadelerin...vb.) herhangi birisi ya da her ikisi de Null olduğunda True ve False dışında sonuç Null değeri olabilir. 
+
