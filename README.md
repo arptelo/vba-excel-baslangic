@@ -76,7 +76,7 @@ Kod çalıştırıldığında sonucu (3) görüntüleyen bir mesaj kutusu görü
 
 ```VBA
   ...
-  MsgBox a & " ve " & b & "'nin toplamı " & a + b & "'tür."
+  MsgBox a & " ve " & b & "'nin toplamı " & a + b & "'dir."
   ...
 ```
 
@@ -85,7 +85,7 @@ Bu kez "1 ve 2'nin toplamı 3'tür." cümlesi görülür. Cümleyi bu kez bir de
 ```VBA
   ...
   Dim message As String
-  message = a & " ve " & b & "'nin toplamı " & a + b & "'tür."
+  message = a & " ve " & b & "'nin toplamı " & a + b & "'dir."
   MsgBox message
   ...
 ```
@@ -97,6 +97,21 @@ Sub ile başlayan ve End Sub ile biten ifade bir **prosedür** olarak isimlendir
 Şimdi sıklıkla bahsi geçen değişken ve operatörlere daha yakından bakılsın.
 
 Veri türleri
+
+String ve Integer en sık kullanılan veri türlerindendir. Bu ikisi ve kullanılan diğer veri türlerinin bazıları aşağıdaki gibidir:
+
+Veri Türü | Boyut | Aralık
+----------|-------|-------
+Byte | 1 Byte | 0 - 255
+Boolean | 2 Byte | True ya da False
+Integer | 2 Byte | -32,768 - 32,767
+Long | 4 Byte | -2,147,483,648 - 2,147,483,647
+LongLong | 8 Byte | -9,223,372,036,854,775,808 - 9,223,372,036,854,775,807
+Single | 4 Byte | -3.402823E38 - -1.401298E-45 (negatif), 1.401298E-45 - 3.402823E38 (pozitif)
+Double | 8 Byte | -1.79769313486231E308 - -4.94065645841247E-324 (negatif), 4.94065645841247E-324 - 1.79769313486232E308 (positif)
+Date | 8 Byte | 1 Ocak 100 - 31 Aralık 9999
+String | Metnin uzunluğu kadar | 1 - 65,400
+Variant | 16 Byte | Double ya da String büyüklüğü kadar
 
 Operatörler matematikte sıklıkla karşılaşılan ifadelerdir. + bir operatördür. Verilen iki sayının toplamını ifade eder. Operatörler verilen sınırlı sayıda girdiden çıktı üreten özel ifadelerdir. Yukarıdaki örnekte 1 ve 2 verildiğinde + operatörü 3 değerini üretir. VBA'da kullanılan diğer operatörler şöyledir.
 
@@ -123,3 +138,77 @@ Mantıksal operatörler | And | Her iki ifade True ise True, diğer durumlarda F
 
 Mantıksal operatörlerde operandların (parametrelerin, ifadelerin...vb.) herhangi birisi ya da her ikisi de Null olduğunda True ve False dışında sonuç Null değeri olabilir. 
 
+Bir önceki örneğe geri dönülürse, bu örnekte integer ve string veri türleri ile toplama, birleştirme ve atama operatörleri kullanılmıştır. Bu örneği hep aynı sayıların toplamını yazdırmaktansa kullanıcının seçeceği sayıların toplamını yazdıran bir prosedüre çevirmek daha yararlı olacaktır. Bu 2 şekilde yapılabilir.
+
+Önce kullanıcıdan doğrudan sayıların istendiği versiyon incelensin.
+
+```VBA
+Sub showSum()
+  Dim a as Integer, b as Integer
+  Dim message As String
+  a = InputBox("Toplanmasını istediğiniz ilk sayıyı giriniz")
+  b = InputBox("Diğer sayıyı giriniz")
+  message = a & " ve " & b & "'nin toplamı " & a + b & "'dir."
+  MsgBox message
+End Sub
+```
+
+InputBox ileti kutusu MsgBox gibi açılan bir kutudur. InputBox kullanıcının giriş yapabileceği bir girdi kutusuna sahiptir. InputBox ileti kutusu için kullanılabilecek üç parametre vardır. Bunlardan ilki prompt, ikincisi title, üçüncüsü ise defaulttur. Eğer parametre ismi girilmezse bu parametreler belirtilen sırada verilmelidir. Prompt kullanıcıya gösterilecek mesaj, title ise mesajın başlığıdır. Default parametresi varsayılan değer atanmasını sağlar. Varsayılan değer InputBox ile değeri kullanıcıdan istenen değişkene verilen ilk değerdir. Eğer kullanıcı giriş yapmazsa değişken bu değer ile işlem görmeye devam eder.
+
+```VBA
+  ...
+  a = InputBox(Prompt:="Toplanmasını istediğiniz ilk sayıyı giriniz", Title:="İki sayının toplamı", Default:=5)
+  ...
+```
+
+ya da kısaca
+
+```VBA
+  ...
+  a = InputBox("Toplanmasını istediğiniz ilk sayıyı giriniz", "İki sayının toplamı", 5)
+  ...
+```
+
+olarak kodlanabilir. Parametre ismi kullanıldığında parametrelerin hangi sırada kullanıldığının bir önemi kalmaz.
+
+```VBA
+  ...
+  a = InputBox(Title:="İki sayının toplamı", Default:=5, Prompt:="Toplanmasını istediğiniz ilk sayıyı giriniz")
+  ...
+```
+
+Parametrelerden sadece biri ya da sadece ikisi de belirtilebilir. Ancak Prompt zorunlu parametredir. Promptun her durumda belirtilmesi gerekir.
+
+```VBA
+  ...
+  a = InputBox(Prompt:="Toplanmasını istediğiniz ilk sayıyı giriniz")
+  ...
+```
+
+ya da
+
+```VBA
+  ...
+  a = InputBox("Toplanmasını istediğiniz ilk sayıyı giriniz", "İki sayının toplamı")
+  ...
+```
+
+Peki toplama işlemi için istenen değerler ileti kutusu ile değil de InputBox'da olduğu gibi parametreler ile istenseydi? Prosedür parametrelerle çağrıldığında parametrelerinin toplamını verecek şekilde de düzenlenebilir. 
+
+```VBA
+  Sub showSum(a As Integer, b As Integer)
+    Dim message As String
+    message = a & " ve " & b & "'nin toplamı " & a + b & "'dir."
+    MsgBox message
+  End Sub
+```
+
+Bu prosedür a ve b isminde iki parametreyi girdi olarak kabul eder. Bu iki parametrenin değeri toplanarak mesaj kutusunda görüntülenir. Ancak bu prosedür, editör penceresindeki Run düğmesi kullanılarak ya da Macros penceresinde seçilerek çalıştırılamaz. Macros penceresinde bu prosedür görünmeyecektir. Bu prosedür ancak başka bir prosedürden çağrılabilir.
+
+```VBA
+  Sub callSum()
+    showSum 2, 4
+  End Sub
+```
+
+Başka bir prosedürden çağrıldığında, çağrılan prosedürün ismi ve varsa parametreleri için kullanılacak değerler sırayla ya da isimleriyle, virgülle ayrılmış olarak girilir. Bu şekilde başka bir prosedürün içinden çağrılıyor olması gereksiz uzatılmış kod gibi görülebilir. Ancak bu kullanım kodu modüler hale getirmiştir. Bu sayede bu işleve yeniden ihtiyaç duyulduğunda tüm kodu tekrar yazmak yerine showSum prosedürü çağrılabilir.
