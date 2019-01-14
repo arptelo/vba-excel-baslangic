@@ -212,3 +212,28 @@ Bu prosedür a ve b isminde iki parametreyi girdi olarak kabul eder. Bu iki para
 ```
 
 Başka bir prosedürden çağrıldığında, çağrılan prosedürün ismi ve varsa parametreleri için kullanılacak değerler sırayla ya da isimleriyle, virgülle ayrılmış olarak girilir. Bu şekilde başka bir prosedürün içinden çağrılıyor olması gereksiz uzatılmış kod gibi görülebilir. Ancak bu kullanım kodu modüler hale getirmiştir. Bu sayede bu işleve yeniden ihtiyaç duyulduğunda tüm kodu tekrar yazmak yerine showSum prosedürü çağrılabilir.
+
+```VBA
+  Sub callSum()
+    Call showSum(2, 4)
+  End Sub
+```
+
+Prosedürler Call ile de çağrılabilir. Bu durumda parametreler parantez içinde girilmelidir.
+
+showSum prosedürü şimdilik sadece sonucu bir mesaj kutusu içinde vermektedir. Eğer sonuç başka bir hesap içinde kullanılmak istenirse bir prosedür işe yaramaz. Bu durumda fonksiyon tanımlamak gerekir. Fonksiyonler bir çıktı üreten kod parçalarıdır. Çıktı olarak üretilen sonuç fonksiyon ismiyle aynı isimde bir değişkene atanmalıdır.
+
+```VBA
+  Function herzamanÜç() as Integer
+    herzamanÜç = 3
+  End Function
+```
+
+herzamanÜç fonksiyonu çağrıldığında 3 değerini verir. Bu fonksiyon herhangi bir girdiye ihtiyaç duymaz. showSum fonksiyonu şöyle tanımlanır.
+
+```VBA
+  Function showSum(a As Integer, b As Integer) As Integer
+    showSum = a + b
+  End Function
+```
+
